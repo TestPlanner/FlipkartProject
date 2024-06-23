@@ -6,12 +6,12 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-		features = {"src\\test\\resources\\appfeatures"},
+		features = {"src/test/resources/appfeatures"},
 		glue = {"steps","apphooks"},
 		//dryRun = true,
 	    publish = true,
 		plugin = {"pretty", "html:target/cucumber-reports/reports.html"},
-		tags = "Loginf1"
+		tags = "@Loginf1"
 		
 		)
 public class HomeRunner extends AbstractTestNGCucumberTests{
