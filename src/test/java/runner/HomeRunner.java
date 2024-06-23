@@ -11,7 +11,7 @@ import io.cucumber.testng.CucumberOptions;
 		//dryRun = true,
 	    publish = true,
 		plugin = {"pretty", "html:target/cucumber-reports/reports.html"},
-		tags = "@filter"
+		tags = "Loginf1"
 		
 		)
 public class HomeRunner extends AbstractTestNGCucumberTests{

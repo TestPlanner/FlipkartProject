@@ -1,6 +1,8 @@
 package pages;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -53,15 +55,23 @@ public class FlipkartHome {
 	@FindBy (xpath = "//div[@class='IiD88i GtCYSF'][2]")
 	private WebElement otp;
 	
-	@FindBy (xpath= "//*[@class='_2KpZ6l _20xBvF _3AWRsL']")
-	private WebElement loginButton;
+//	@FindBy (xpath= "//*[@class='_2KpZ6l _20xBvF _3AWRsL']")
+//	private WebElement loginButton;
 	
 	@FindBy (xpath = "//*[@class='_1hUz_t _2-K-ro']")
 	private WebElement deliveryAddressTab;
 	
+	@FindBy (xpath = "//span[text()= 'Login']")
+	private WebElement loginButton;
+	
+	@FindBy (xpath = "//*[@class='_3YjYK7 ecs1XG']//child::a//li")
+	private List<WebElement> optionsOfLogin;
+	
 	private WebDriver driver;
 	private WebDriverWait wait;
 	private JavascriptExecutor js;
+	private Actions act;
+	private ArrayList<String> al;
 	
 	public FlipkartHome(WebDriver driver) {
 		
@@ -69,6 +79,7 @@ public class FlipkartHome {
 		PageFactory.initElements(driver,this);
 		wait=new WebDriverWait(driver,Duration.ofSeconds(60));
 		 js = (JavascriptExecutor)driver;
+		 act = new Actions(driver);
 	}
 	
 	public String getTitleOfThePage() {
@@ -86,7 +97,7 @@ public class FlipkartHome {
 	public void enteringSearchOption(String item) {
 		searchbox.sendKeys(item);
 		wait.until(ExpectedConditions.visibilityOf(laptopOption));
-		Actions act = new Actions(driver);
+		
 		act.moveToElement(laptopOption).click().build().perform();
 		
 	}
@@ -101,5 +112,17 @@ public void becomeSeller() {
 	becomeSeller.click();
 	}
 	
+public void scrollToLoginbutton() {
+	act.moveToElement(loginButton).perform();
+}
+
+public ArrayList<String> loginButtonOptions() {
+	al = new ArrayList<>();
+	for(WebElement eachOption:optionsOfLogin) {
+		String str=eachOption.getText();
+		al.add(str);
+	}
+	return al;
+}
 	
 }
