@@ -17,9 +17,9 @@ public class SampleTest {
 		Actions act = new Actions(driver);
 		WebElement loginButton = driver.findElement(By.xpath("//span[text()= 'Login']"));          //xpath = "//span[text()= 'Login']";
 		 act.moveToElement(loginButton).perform();
-		List<WebElement> optionsOfLogin=driver.findElements(By.xpath("//*[@class='_3YjYK7 ecs1XG']//child::a//li"));
+		List<WebElement> optionsOfLogin=driver.findElements(By.xpath("//*[@class='_3YjYK7 ecs1XG']//child::a"));
 		for(WebElement eachOption:optionsOfLogin) {
-			String text=eachOption.getText();
+			String text=eachOption.getAttribute("title");
 			System.out.println(text);
 		}
 		System.out.println("end");
